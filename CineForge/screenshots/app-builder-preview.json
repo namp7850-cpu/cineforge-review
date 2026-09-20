@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "CineForge — VEEK REVIEW",
+      "hasCanvas": false,
+      "bodyTextLen": 1271,
+      "bodyTextHash": "69d31089b720ff7fa39fc00d75d87f878b97462ea15dd975f007b5a1a3b31ed7",
+      "bodyTextPrefix": "CineForge VEEK REVIEW Studio biên tập & xuất review phim 01 Nhập",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "CineForge — VEEK REVIEW",
+      "hasCanvas": false,
+      "bodyTextLen": 1250,
+      "bodyTextHash": "4fbda40889c60741388770104857ea4e14e5e8fc9b4e45d93196877400a35761",
+      "bodyTextPrefix": "CineForge Studio biên tập & xuất review phim Grok 01 Nhập nguồn ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

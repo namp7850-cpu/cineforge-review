@@ -1,0 +1,11 @@
+node_modules
+.output
+.env
+.env.*
+!.env.example
+attachments
+screenshots
+artifacts
+
+# Video người dùng tải lên (POST /api/upload)
+uploads

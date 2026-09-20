@@ -1,0 +1,14 @@
+node_modules
+dist
+.output
+.vercel
+.tanstack
+*.log
+
+# Secret API keys — không bao giờ commit file này lên git/GitHub.
+.env
+.env.local
+.env.*.local
+
+# Video người dùng tải lên (POST /api/upload)
+uploads
