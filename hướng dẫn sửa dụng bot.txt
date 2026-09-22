@@ -1,0 +1,197 @@
+# 🚀 HƯỚNG DẪN MỞ VÀ CHẠY DỰ ÁN TRÊN VISUAL STUDIO CODE (VS CODE)
+
+Tài liệu này hướng dẫn chi tiết từng bước để bạn tải, nhập mã nguồn vào **Visual Studio Code (VS Code)** và khởi chạy ứng dụng **CineForge - Studio Biên Tập & Xuất Video Âm Thanh** trên máy tính cá nhân.
+
+---
+
+## 📋 1. Yêu Cầu Chuẩn Bị (Prerequisites)
+
+Trước khi bắt đầu, hãy đảm bảo máy tính của bạn đã cài đặt các công cụ sau:
+
+1. **Visual Studio Code**: Tải tại [code.visualstudio.com](https://code.visualstudio.com/)
+2. **Node.js**: Phiên bản khuyến nghị là **Node.js LTS (v18.x, v20.x hoặc mới hơn)**.
+   - Kiểm tra bằng lệnh:
+     ```bash
+     node -v
+     npm -v
+     ```
+   - Nếu chưa có, tải tại [nodejs.org](https://nodejs.org/).
+3. *(Tùy chọn)* **Python 3.9+ & FFmpeg**: Nếu bạn muốn chạy các script xử lý video offline bằng Python ở Bước 5.
+
+---
+
+## 🛠️ 2. Các Bước Khởi Chạy Dự Án Trong VS Code
+
+### Bước 1: Mở Thư Mục Dự Án Bằng VS Code
+1. Mở phần mềm **Visual Studio Code**.
+2. Trên thanh menu trên cùng, chọn **File** ➔ **Open Folder...** (hoặc phím tắt `Ctrl + K, Ctrl + O` trên Windows / `Cmd + O` trên macOS).
+3. Chọn thư mục chứa toàn bộ mã nguồn của dự án CineForge và bấm **Select Folder**.
+
+---
+
+### Bước 2: Mở Terminal Tích Hợp Trong VS Code
+1. Trên thanh menu của VS Code, chọn **Terminal** ➔ **New Terminal** (hoặc nhấn tổ hợp phím tắt: `` Ctrl + ` `` trên Windows / macOS).
+2. Cửa sổ dòng lệnh (Terminal) sẽ xuất hiện ở góc dưới màn hình.
+
+---
+
+### Bước 3: Cài Đặt Các Thư Viện Cần Thiết (`node_modules`)
+Tại cửa sổ Terminal, chạy lệnh sau và nhấn **Enter**:
+
+```bash
+npm install
+```
+
+> ⏳ Quá trình này sẽ tải các gói thư viện cần thiết như React, Express, Vite, Tailwind CSS, Google GenAI SDK... Mất khoảng 30 giây đến 1 phút tùy tốc độ mạng.
+
+---
+
+### Bước 4: Tạo Và Cấu Hình File Môi Trường `.env`
+Dự án sử dụng các biến môi trường để kết nối API (Gemini, Groq, OpenAI, Tavily, v.v.).
+
+1. Trong danh sách file bên trái của VS Code, sao chép file `.env.example` thành file mới có tên `.env`.
+   - *Cách nhanh qua Terminal:*
+     - **Trên Windows (PowerShell):**
+       ```powershell
+       Copy-Item .env.example .env
+       ```
+     - **Trên macOS / Linux / Git Bash:**
+       ```bash
+       cp .env.example .env
+       ```
+2. Mở file `.env` vừa tạo và điền các API Key bạn có (tối thiểu là `GEMINI_API_KEY` nếu bạn muốn dùng tính năng viết kịch bản AI):
+   ```env
+   GEMINI_API_KEY=AIzaSy...
+   GROQ_API_KEY=
+   DEEPSEEK_API_KEY=
+   OPENAI_API_KEY=
+   TAVILY_API_KEY=
+   ASSEMBLYAI_API_KEY=
+   ```
+   *(Lưu ý: Nếu không có API Key, bạn vẫn sử dụng đầy đủ các tính năng cắt video, chọn nhạc nền, hòa âm và xuất video MP4 trên web như bình thường).*
+
+---
+
+### Bước 5: Khởi Động Server Phát Triển (Dev Server)
+Tại cửa sổ Terminal, chạy lệnh:
+
+```bash
+npm run dev
+```
+
+Khi chạy thành công, Terminal sẽ hiển thị thông báo:
+```text
+Server running on http://localhost:3000
+```
+
+---
+
+### Bước 6: Mở Ứng Dụng Trên Trình Duyệt Web
+1. Mở trình duyệt web của bạn (Chrome, Edge, Firefox, Brave, Safari...).
+2. Truy cập vào địa chỉ:
+   ```
+   http://localhost:3000
+   ```
+3. Bạn sẽ thấy giao diện Studio CineForge đầy đủ 5 bước biên tập:
+   - **Bước 1**: Nhập video (từ máy tính, link URL hoặc dùng video mẫu).
+   - **Bước 2**: Thiết lập âm thanh (nhạc nền, âm lượng, thuyết minh, auto-ducking).
+   - **Bước 3**: Cắt video, chọn bộ lọc màu, chỉnh tỷ lệ khung hình (16:9, 9:16, 1:1), thêm chữ bản quyền & phụ đề.
+   - **Bước 4**: Xuất video trực tiếp trên trình duyệt Web (bảo toàn 100% độ dài và có tiếng Stereo đầy đủ), tải về máy tính.
+   - **Bước 5**: Tải mã nguồn Python FFmpeg local nếu muốn render bằng dòng lệnh.
+
+---
+
+## 📜 3. Danh Sách Lệnh Tiện Ích (`npm scripts`)
+
+Trong file `package.json`, các lệnh sau đã được cấu hình sẵn:
+
+| Lệnh | Ý Nghĩa & Công Dụng |
+| :--- | :--- |
+| `npm run dev` | Khởi động server Express kết hợp Vite ở chế độ phát triển (Cổng 3000) với `tsx`. |
+| `npm run build` | Đóng gói production toàn bộ: Build giao diện React bằng Vite và đóng gói backend `server.ts` thành `dist/server.cjs` qua `esbuild`. |
+| `npm run start` | Chạy ứng dụng bản production từ file `dist/server.cjs`. |
+| `npm run lint` | Kiểm tra cú pháp và kiểu dữ liệu TypeScript (`tsc --noEmit`). |
+
+---
+
+## ❓ 4. Xử Lý Các Lỗi Thường Gặp (Troubleshooting)
+
+### 🔴 Lỗi 1: `Port 3000 is already in use` (Cổng 3000 đang bị chiếm)
+**Nguyên nhân:** Đang có một tiến trình khác chạy trên cổng 3000.  
+**Cách xử lý:**
+- **Trên Windows (PowerShell):**
+  ```powershell
+  Get-Process -Id (Get-NetTCPConnection -LocalPort 3000).OwningProcess | Stop-Process -Force
+  ```
+- **Trên macOS / Linux:**
+  ```bash
+  npx kill-port 3000
+  ```
+Sau đó chạy lại `npm run dev`.
+
+---
+
+### 🔴 Lỗi 2: `Execution of scripts is disabled on this system` (Lỗi PowerShell trên Windows)
+**Nguyên nhân:** Chính sách bảo mật của Windows PowerShell chặn chạy script của npm.  
+**Cách xử lý:**
+1. Mở PowerShell với quyền Administrator (Run as Administrator).
+2. Chạy lệnh:
+   ```powershell
+   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+3. Nhập `Y` rồi nhấn **Enter**, sau đó khởi động lại VS Code.
+
+---
+
+### 🔴 Lỗi 3: Không nghe thấy tiếng khi xuất video?
+- **Khắc phục:** Hệ thống CineForge đã tích hợp sẵn luồng sóng mang âm thanh `carrierOsc` và bộ hòa âm Web Audio Engine. Hãy đảm bảo:
+  1. Ở Bước 2, bật thanh trượt **Âm thanh video gốc** (> 0%) hoặc chọn một bản nhạc nền **Lo-Fi / Cinematic / Upbeat**.
+  2. Bấm vào màn hình video để cấp quyền phát âm thanh cho trình duyệt (Autoplay policy).
+  3. Khi bấm **Xuất Video**, đợi tiến trình hoàn tất 100% rồi bấm nút **Tải Video MP4 Về Máy**.
+
+---
+
+### 🔴 Lỗi 4: Muốn chạy mã nguồn Python FFmpeg (Bước 5)?
+Nếu muốn chạy trực tiếp file Python trên máy của bạn:
+1. Đảm bảo máy đã cài **FFmpeg** (kiểm tra bằng `ffmpeg -version`).
+   - Windows: Tải FFmpeg hoặc cài qua `winget install Gyan.FFmpeg` / `choco install ffmpeg`.
+   - macOS: `brew install ffmpeg`.
+   - Ubuntu/Debian: `sudo apt update && sudo apt install -y ffmpeg`.
+2. Chuyển vào thư mục chứa script Python và chạy:
+   ```bash
+   pip install -r requirements.txt
+   python bien_tap_video.py
+   ```
+
+---
+
+## 📁 5. Cấu Trúc Thư Mục Dự Án
+
+```
+├── server.ts                 # Backend Express + AI API routes + Vite SSR middleware
+├── vite.config.ts            # Cấu hình Vite & Tailwind CSS v4
+├── package.json              # Danh sách thư viện và scripts khởi chạy
+├── .env.example              # Mẫu khai báo các API Key
+├── index.html                # Điểm vào HTML chính
+└── src/
+    ├── main.tsx              # Khởi tạo React App
+    ├── App.tsx               # Điều phối luồng 5 bước biên tập video
+    ├── types.ts              # Định nghĩa Typescript types
+    ├── index.css             # CSS Tailwind v4 & phông chữ
+    ├── lib/
+    │   ├── videoExporter.ts  # Động cơ xuất video Web Audio + Canvas (100% có tiếng)
+    │   ├── audioEngine.ts    # Web Audio Synthesizer phát nhạc lofi, hiệu ứng âm thanh
+    │   └── sampleVideos.ts   # Danh sách video mẫu sẵn có
+    └── components/
+        ├── Navbar.tsx        # Thanh điều hướng và nút mở AI Hub
+        ├── Step1Import.tsx   # Bước 1: Chọn video đầu vào
+        ├── Step2Decision.tsx # Bước 2: Tùy biến nhạc nền, âm lượng, thuyết minh
+        ├── Step3Edit.tsx     # Bước 3: Cắt video, tỷ lệ khung hình, chữ, màu sắc
+        ├── Step4Export.tsx   # Bước 4: Xuất video & tải về máy tính
+        ├── Step5PythonPipeline.tsx # Bước 5: Mã nguồn Python FFmpeg local
+        ├── AIModal.tsx       # Trung tâm AI (Gemini, Groq, DeepSeek, Tavily,...)
+        └── DomainSetupModal.tsx # Hướng dẫn trỏ tên miền thkangctv.com
+```
+
+---
+Chúc bạn trải nghiệm biên tập và sáng tạo video thật hiệu quả với **CineForge**!

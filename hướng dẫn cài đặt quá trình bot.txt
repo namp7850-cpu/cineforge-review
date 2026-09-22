@@ -1,0 +1,32 @@
+
+1
+Mở dự án
+Mở phần mềm VS Code, chọn File > Open Folder và trỏ tới thư mục chứa mã nguồn của bạn (ví dụ: D:\hi\cineforge).
+Thiết lập không gian làm việc chính cho dự án.
+bước 1
+Cài đặt thư viện
+Mở Terminal tích hợp trong VS Code và chạy lệnh:
+* cd merged
+* npm install
+Tải xuống đầy đủ các gói thư viện cần thiết (node_modules) cho dự án.
+bước 2
+Chạy thử cục bộ
+! lưa ý nếu bị lỗi giải phóng cổng 
+      * 	
+* npm run dev
+  
+bước 3
+*   npx vite dev
+*  npm run dev
+
+bước 4 
+ (hoặc lệnh tương ứng trong dự án).
+ * 1  ()  vite dev --host 0.0.0.0 --port 8080 ( và dán )
+ * 2  () npx vite dev --port 8081
+4. chuyển file .env ra ngoài 
+*  move attachments\.env .
+move -Force attachments\.env .
+lỗi npm install
+cd CineForge\CineForge
+npm install
+npm run dev
