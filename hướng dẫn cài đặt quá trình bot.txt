@@ -30,3 +30,4 @@ lỗi npm install
 cd CineForge\CineForge
 npm install
 npm run dev
+yt-dlp <đường_dẫn_video>
